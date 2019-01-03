@@ -26,7 +26,7 @@ const renderYear = (groups, year) => (
   </li>
 );
 
-const SecondPage = ({ data }) => {
+const PhenomenaList = ({ data }) => {
   const { edges } = data.allWordpressPost;
   const groups = _.chain(edges)
     .map(({ node: { slug, title, categories } }) => ({
@@ -51,6 +51,7 @@ const SecondPage = ({ data }) => {
     </Layout>
   );
 };
+
 export const pageQuery = graphql`
   query {
     allWordpressPost {
@@ -66,4 +67,4 @@ export const pageQuery = graphql`
     }
   }
 `;
-export default SecondPage;
+export default PhenomenaList;

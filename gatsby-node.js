@@ -25,17 +25,19 @@ exports.createPages = async ({ graphql, actions }) => {
   );
 
   const phenomenaTemplate = path.resolve('./src/templates/phenomena.js');
+  const phenomenasRaw = result.data.allWordpressPost.edges;
 
-  const phenomenas = result.data.allWordpressPost.edges.map(({ node }) => ({
+  const phenomenas = phenomenasRaw.map(({ node }) => ({
     slug: node.slug,
     title: node.title,
+    excerpt: node.excerpt,
     year: node.categories[0].name,
   }));
 
   const phenomenasMeta = {};
   const phenomenasByYear = _.groupBy(phenomenas, 'year');
 
-  result.data.allWordpressPost.edges.forEach(({ node }) => {
+  phenomenasRaw.forEach(({ node }) => {
     const year = node.categories[0].name;
 
     phenomenasMeta[node.slug] = {
@@ -49,6 +51,19 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: node.id,
         // meta: phenomenasMeta,
+        yearPhenomenas: phenomenasByYear[year],
+      },
+    });
+  });
+
+  const yearTemplate = path.resolve('./src/templates/year.js');
+
+  _.keys(phenomenasByYear).map(year => {
+    createPage({
+      path: `/years/${year}`,
+      component: yearTemplate,
+      context: {
+        year,
         yearPhenomenas: phenomenasByYear[year],
       },
     });

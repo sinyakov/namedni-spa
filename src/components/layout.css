@@ -1622,3 +1622,56 @@ a:hover {
     text-align: center;
   }
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.grid__phenomena {
+  text-decoration: none;
+  box-sizing: border-box;
+  padding: 16px;
+  font-size: 24px;
+  border-radius: 8px;
+  line-height: 1.1;
+  background-size: cover;
+  background-position: center;
+  letter-spacing: 1px;
+  width: 258px;
+  height: 258px;
+  color: #fff;
+  transition: background-size 2s ease-in;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 12px;
+  margin-right: 12px;
+}
+
+.grid__phenomena:nth-child(4n) {
+  margin-right: 0;
+}
+
+.grid__phenomena:hover {
+  color: #fff;
+  background-size: contain;
+  background-repeat: no-repeat; 
+  background-color: rgb(255, 241, 225);
+}
+
+.grid__preview {
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 241, 225);
+  height: 258px;
+  width: 540px;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 15px;
+}
