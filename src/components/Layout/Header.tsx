@@ -1,24 +1,24 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import { Location } from '@reach/router';
+import { Location } from "@reach/router";
+import { Link } from "gatsby";
+import React from "react";
 
 const links = [
   {
-    title: 'Феномены по годам',
-    path: '/years',
+    path: "/years",
+    title: "Феномены по годам",
   },
   {
-    title: 'Фильмы Парфенова',
-    path: '/movies',
+    path: "/movies",
+    title: "Фильмы Парфенова",
   },
   {
-    title: 'Российская империя',
-    path: '/ri',
+    path: "/ri",
+    title: "Российская империя",
   },
   {
-    title: 'Том «1931-1940»',
-    path: '/volumes/1931-1940',
     important: true,
+    path: "/volumes/1931-1940",
+    title: "Том «1931-1940»",
   },
 ];
 
@@ -28,7 +28,7 @@ const Header = () => (
       <div className="wrapper">
         <Location>
           {({ location }) => {
-            if (location.pathname === '/') {
+            if (location.pathname === "/") {
               return (
                 <div className="main-header__title-block">
                   <h1 className="main-header__title">Намедни. Наша Эра</h1>
@@ -53,7 +53,7 @@ const Header = () => (
             <li className="main-menu__item" key={path}>
               <Link
                 className={`main-menu__link${
-                  important ? ' main-menu__link--important' : ''
+                  important ? " main-menu__link--important" : ""
                 }`}
                 to={path}
               >

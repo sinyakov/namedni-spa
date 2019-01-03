@@ -4,12 +4,12 @@
   "jsRules": {},
   "rules": {
     "interface-name": false,
-    // "semicolon": [true, "never"],
     "member-access": [false],
     "ordered-imports": [true],
     "no-console": [false],
     "no-var-requires": true,
-    "quotemark": [true, "double", "jsx-double"]
+    "quotemark": [true, "double", "jsx-double"],
+    "jsx-no-lambda": false
   },
   "rulesDirectory": []
 }

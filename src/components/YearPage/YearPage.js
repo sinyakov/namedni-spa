@@ -1,21 +1,21 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import { jsx } from '@emotion/core';
+import { jsx } from "@emotion/core";
+import { Link } from "gatsby";
+import React from "react";
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Layout from "../Layout/layout";
+import SEO from "../seo";
 
 export default class extends React.Component {
   state = {
-    top: 0,
-    left: 0,
-    currentPhenomena: null,
     current: -1,
+    currentPhenomena: null,
+    left: 0,
+    top: 0,
   };
 
   showPreview = (currentPhenomena, index) => () => {
-    const display = 'block';
-    const borderRadius = index % 4 >= 2 ? '8px 0 0 8px' : '0 8px 8px 0';
+    const display = "block";
+    const borderRadius = index % 4 >= 2 ? "8px 0 0 8px" : "0 8px 8px 0";
     const top = `${Math.floor(index / 4) * 270}px`;
     const left = `${
       {
@@ -30,17 +30,17 @@ export default class extends React.Component {
       current: index,
       currentPhenomena,
       previewStyle: {
-        display,
         borderRadius,
-        top,
+        display,
         left,
+        top,
       },
     });
   };
 
   hidePreview = () => {
     this.setState({
-      previewStyle: { display: 'none' },
+      previewStyle: { display: "none" },
       current: -1,
       currentPhenomena: null,
     });
@@ -94,10 +94,10 @@ export default class extends React.Component {
                 borderRadius:
                   current === index
                     ? index % 4 < 2
-                      ? '8px 0 0 8px'
-                      : '0 8px 8px 0'
-                    : '8px',
-                ':hover': {
+                      ? "8px 0 0 8px"
+                      : "0 8px 8px 0"
+                    : "8px",
+                ":hover": {
                   backgroundImage: `url(https://namednibook.ru/img/phenomena/${year}/${
                     phenomena.slug
                   }.jpg)`,

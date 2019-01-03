@@ -24,7 +24,9 @@ exports.createPages = async ({ graphql, actions }) => {
     `
   );
 
-  const phenomenaTemplate = path.resolve('./src/templates/phenomena.js');
+  const phenomenaTemplate = path.resolve(
+    './src/components/PhenomenaPage/PhenomenaPage.js'
+  );
   const phenomenasRaw = result.data.allWordpressPost.edges;
 
   const phenomenas = phenomenasRaw.map(({ node }) => ({
@@ -56,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const yearTemplate = path.resolve('./src/templates/year.js');
+  const yearTemplate = path.resolve('./src/components/YearPage/YearPage.js');
 
   _.keys(phenomenasByYear).map(year => {
     createPage({

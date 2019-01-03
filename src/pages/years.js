@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link, graphql } from 'gatsby';
-import _ from 'lodash/';
+import { graphql, Link } from "gatsby";
+import _ from "lodash";
+import React from "react";
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Layout from "../components/Layout/Layout";
+import SEO from "../components/seo";
 
 const renderYear = (groups, year) => (
   <li className="phenomena-list__item" key={year}>
@@ -34,7 +34,7 @@ const PhenomenaList = ({ data }) => {
       title,
       year: categories[0].name,
     }))
-    .groupBy('year')
+    .groupBy("year")
     .value();
 
   return (
