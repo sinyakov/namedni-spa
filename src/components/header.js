@@ -1,42 +1,70 @@
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
-import React from 'react'
+import React from 'react';
+import { Link } from 'gatsby';
+import { Location } from '@reach/router';
 
-const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
+const links = [
+  {
+    title: 'Феномены по годам',
+    path: '/years',
+  },
+  {
+    title: 'Фильмы Парфенова',
+    path: '/movies',
+  },
+  {
+    title: 'Российская империя',
+    path: '/ri',
+  },
+  {
+    title: 'Том «1931-1940»',
+    path: '/volumes/1931-1940',
+    important: true,
+  },
+];
+
+const Header = () => (
+  <>
+    <header className="main-header">
+      <div className="wrapper">
+        <Location>
+          {({ location }) => {
+            if (location.pathname === '/') {
+              return (
+                <div className="main-header__title-block">
+                  <h1 className="main-header__title">Намедни. Наша Эра</h1>
+                  <div className="main-header__tagline">Леонид Парфенов</div>
+                </div>
+              );
+            }
+            return (
+              <Link className="main-header__title-block" to="/">
+                <h1 className="main-header__title">Намедни. Наша Эра</h1>
+                <div className="main-header__tagline">Леонид Парфенов</div>
+              </Link>
+            );
           }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </div>
-)
+        </Location>
+      </div>
+    </header>
+    <nav className="main-menu">
+      <div className="wrapper">
+        <ul className="main-menu__list">
+          {links.map(({ title, path, important }) => (
+            <li className="main-menu__item" key={path}>
+              <Link
+                className={`main-menu__link${
+                  important ? ' main-menu__link--important' : ''
+                }`}
+                to={path}
+              >
+                {title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  </>
+);
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
+export default Header;
