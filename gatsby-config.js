@@ -6,13 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
+    `gatsby-plugin-catch-links`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -24,11 +18,28 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-source-wordpress',
+      options: {
+        baseUrl: 'draft.namednibook.ru',
+        protocol: 'http',
+        hostingWPCOM: false,
+        auth: {
+          jwt_user: process.env.JWT_USER,
+          jwt_pass: process.env.JWT_PASSWORD,
+        },
+        verboseOutput: false,
+        perPage: 100,
+        searchAndReplaceContentUrls: {
+          sourceUrl: 'http://draft.namednibook.ru',
+          replacementUrl: '/',
+        },
+        concurrentRequests: 10,
+        includedRoutes: ['/*/*/categories', '/*/*/posts'],
+        normalizer: ({ entities }) => entities,
+      },
+    },
   ],
-}
+};
