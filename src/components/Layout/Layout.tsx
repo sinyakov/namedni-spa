@@ -1,11 +1,11 @@
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";
 
-import "./normalize.css";
-import "./styles.css";
+import "src/components/Layout/normalize.css";
+import "src/components/Layout/styles.css";
 
-import Footer from "./footer";
-import Header from "./header";
+import Footer from "src/components/Layout/Footer";
+import Header from "src/components/Layout/Header";
 
 interface IProps {
   children: JSX.Element | JSX.Element[];

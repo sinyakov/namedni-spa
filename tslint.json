@@ -9,7 +9,9 @@
     "no-console": [false],
     "no-var-requires": true,
     "quotemark": [true, "double", "jsx-double"],
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false
   },
   "rulesDirectory": []
 }

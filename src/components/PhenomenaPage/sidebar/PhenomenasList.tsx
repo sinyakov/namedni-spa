@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
-import { declinePhenomena } from "../../../utils/declineNoun";
+
+import { declinePhenomena } from "src/utils/declineNoun";
 
 interface IProps {
   year: number;

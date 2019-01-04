@@ -1,8 +1,8 @@
 import { Link } from "gatsby";
 import React from "react";
 
-import { computeNearYears } from "../../../utils/computeNearYears";
-import { getVolumeByYear } from "../../../utils/getVolumeByYear";
+import { computeNearYears } from "src/utils/computeNearYears";
+import { getVolumeByYear } from "src/utils/getVolumeByYear";
 
 interface IProps {
   year: number;
