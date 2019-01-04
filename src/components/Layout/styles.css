@@ -1627,6 +1627,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   position: relative;
+  margin: 0 -6px;
 }
 
 .grid__phenomena {
@@ -1639,8 +1640,8 @@ a:hover {
   background-size: cover;
   background-position: center;
   letter-spacing: 1px;
-  width: 258px;
-  height: 258px;
+  width: 261px;
+  height: 261px;
   color: #fff;
   transition: background-size 2s ease-in;
   display: flex;
@@ -1648,18 +1649,16 @@ a:hover {
   align-items: center;
   text-align: center;
   margin-bottom: 12px;
-  margin-right: 12px;
+  margin-right: 6px;
+  margin-left: 6px;
 }
 
-.grid__phenomena:nth-child(4n) {
-  margin-right: 0;
+.grid__phenomena_long {
+  width: 534px;
 }
 
 .grid__phenomena:hover {
   color: #fff;
-  background-size: contain;
-  background-repeat: no-repeat; 
-  background-color: rgb(255, 241, 225);
 }
 
 .grid__preview {
@@ -1674,4 +1673,24 @@ a:hover {
   border-radius: 8px;
   padding: 16px;
   font-size: 15px;
+}
+
+.year__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.year__footer-left {
+  width: 700px;
+}
+
+.year__footer-right {
+  width: 366px;
+  margin: 30px 0;
+  background: linear-gradient(90deg, #327738, #1c7960);
+  border-radius: 4px;
+  padding: 15px;
+  box-sizing: border-box;
+  color: #fff;
 }

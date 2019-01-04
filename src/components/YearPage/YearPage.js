@@ -1,59 +1,21 @@
-import { jsx } from "@emotion/core";
-import { Link } from "gatsby";
-import React from "react";
+import { jsx } from '@emotion/core';
+import { Link } from 'gatsby';
+import React from 'react';
+import _ from 'lodash';
+import cx from 'classnames';
 
-import Layout from "../Layout/layout";
-import SEO from "../seo";
+import Layout from '../Layout/layout';
+import SEO from '../seo';
+import { computeNearYears } from '../../utils/computeNearYears';
+import { AboutBanner } from '../PhenomenaPage/AboutBanner';
 
 export default class extends React.Component {
-  state = {
-    current: -1,
-    currentPhenomena: null,
-    left: 0,
-    top: 0,
-  };
-
-  showPreview = (currentPhenomena, index) => () => {
-    const display = "block";
-    const borderRadius = index % 4 >= 2 ? "8px 0 0 8px" : "0 8px 8px 0";
-    const top = `${Math.floor(index / 4) * 270}px`;
-    const left = `${
-      {
-        0: 258,
-        1: 258 * 2 + 12,
-        2: 0,
-        3: 258 + 12,
-      }[index % 4]
-    }px`;
-
-    this.setState({
-      current: index,
-      currentPhenomena,
-      previewStyle: {
-        borderRadius,
-        display,
-        left,
-        top,
-      },
-    });
-  };
-
-  hidePreview = () => {
-    this.setState({
-      previewStyle: { display: "none" },
-      current: -1,
-      currentPhenomena: null,
-    });
-  };
-
   render() {
     const { pageContext } = this.props;
     const { year, yearPhenomenas } = pageContext;
+    const { prevYear, nextYear } = computeNearYears(+year);
 
-    const { previewStyle, current, currentPhenomena } = this.state;
-
-    const prevYear = +year - 1;
-    const nextYear = +year + 1;
+    const phenomenas = roundPhenomenasCount(yearPhenomenas, year);
 
     return (
       <Layout>
@@ -79,59 +41,83 @@ export default class extends React.Component {
         </div>
 
         <div className="grid">
-          {yearPhenomenas.map((phenomena, index) => (
+          {phenomenas.map(phenomena => (
             <Link
-              className="grid__phenomena"
+              className={cx(
+                'grid__phenomena',
+                phenomena.long && 'grid__phenomena_long'
+              )}
               key={phenomena.slug}
               to={`/${phenomena.slug}.html`}
-              onMouseEnter={this.showPreview(phenomena, index)}
-              onMouseLeave={this.hidePreview}
               css={{
-                backgroundImage: `linear-gradient(rgba(25,25,25,9), rgba(25,0,0,.6)),
+                backgroundImage: `linear-gradient(rgba(25,25,25,.9), rgba(25,0,0,.6)),
                                   url(https://namednibook.ru/img/phenomena/${year}/${
                   phenomena.slug
                 }.jpg)`,
-                borderRadius:
-                  current === index
-                    ? index % 4 < 2
-                      ? "8px 0 0 8px"
-                      : "0 8px 8px 0"
-                    : "8px",
-                ":hover": {
-                  backgroundImage: `url(https://namednibook.ru/img/phenomena/${year}/${
+                ':hover': {
+                  backgroundImage: `linear-gradient(rgba(25,25,25,.95), rgba(25,0,0,.7)),
+                                  url(https://namednibook.ru/img/phenomena/${year}/${
                     phenomena.slug
                   }.jpg)`,
                 },
               }}
             >
-              {current !== index && phenomena.title}
+              {phenomena.title}
             </Link>
           ))}
-          <div className="grid__preview" style={previewStyle}>
-            {currentPhenomena && (
-              <>
-                <h2>{currentPhenomena.title}</h2>
-                <div
-                  dangerouslySetInnerHTML={{ __html: currentPhenomena.excerpt }}
-                />
-              </>
-            )}
-          </div>
         </div>
+        <footer className="year__footer">
+          <div className="year__footer-left">
+            <AboutBanner />
+          </div>
+          <div className="year__footer-right">
+            <div className="">
+              <h2 className="banner__header">Смотреть видеоверсию 📺</h2>
+              <p>
+                Автор телепроектов «Намедни» и «Российская империя». Пятикратный
+                лауреат ТЭФИ.
+              </p>
+              <p>Автор телепроектов «Намедни» и «Российская империя».</p>
+            </div>
+          </div>
+        </footer>
       </Layout>
     );
   }
 }
 
-// GraphQL-запрос
-// {
-//   allWordpressPost(filter: {categories: {elemMatch: {name: {eq: "2006"}}}}) {
-//     edges {
-//       node {
-//         id
-//         slug
-//         excerpt
-//       }
-//     }
-//   }
-// }
+function roundPhenomenasCount(yearPhenomenas, year) {
+  const lack = 4 - (yearPhenomenas.length % 4);
+
+  if (lack === 4) {
+    return yearPhenomenas;
+  }
+
+  const longest = _.chain(yearPhenomenas)
+    .sortBy(({ title }) => title.length)
+    .reverse()
+    .take(lack)
+    .map(({ slug }) => slug)
+    .value();
+
+  const res = yearPhenomenas.map(phenomena => ({
+    ...phenomena,
+    long: longest.includes(phenomena.slug),
+  }));
+
+  const short = res.filter(({ long }) => !long);
+  const long = res.filter(({ long }) => long);
+
+  // TODO: см 1939 год
+  if (long.length >= 1) {
+    short.splice(4 + (year % 3), 0, long[0]);
+  }
+  if (long.length >= 2) {
+    short.splice(Math.floor(short.length / 8) * 4 + 1 - (year % 3), 0, long[1]);
+  }
+  if (long.length >= 3) {
+    short.splice(-1, 0, long[2]);
+  }
+
+  return short;
+}
