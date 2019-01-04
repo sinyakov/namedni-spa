@@ -1,4 +1,5 @@
 import { Location } from "@reach/router";
+import cx from "classnames";
 import { Link } from "gatsby";
 import React from "react";
 
@@ -51,14 +52,32 @@ const Header = () => (
         <ul className="main-menu__list">
           {links.map(({ title, path, important }) => (
             <li className="main-menu__item" key={path}>
-              <Link
-                className={`main-menu__link${
-                  important ? " main-menu__link--important" : ""
-                }`}
-                to={path}
-              >
-                {title}
-              </Link>
+              <Location>
+                {({ location }) => {
+                  if (location.pathname === path) {
+                    return (
+                      <span
+                        className={cx(
+                          "menu__link",
+                          important && " main-menu__link--important"
+                        )}
+                      >
+                        {title}
+                      </span>
+                    );
+                  }
+                  return (
+                    <Link
+                      className={`main-menu__link${
+                        important ? " main-menu__link--important" : ""
+                      }`}
+                      to={path}
+                    >
+                      {title}
+                    </Link>
+                  );
+                }}
+              </Location>
             </li>
           ))}
         </ul>
