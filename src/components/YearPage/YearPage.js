@@ -15,7 +15,7 @@ export default class extends React.Component {
     const { year, yearPhenomenas } = pageContext;
     const { prevYear, nextYear } = computeNearYears(+year);
 
-    const phenomenas = roundPhenomenasCount(yearPhenomenas, year);
+    const phenomenas = roundPhenomenasCount(yearPhenomenas);
 
     return (
       <Layout>
@@ -50,12 +50,12 @@ export default class extends React.Component {
               key={phenomena.slug}
               to={`/${phenomena.slug}.html`}
               css={{
-                backgroundImage: `linear-gradient(rgba(25,25,25,.9), rgba(25,0,0,.6)),
+                backgroundImage: `linear-gradient(rgba(25,25,25,.75), rgba(25,0,0,.5)),
                                   url(https://namednibook.ru/img/phenomena/${year}/${
                   phenomena.slug
                 }.jpg)`,
                 ':hover': {
-                  backgroundImage: `linear-gradient(rgba(25,25,25,.95), rgba(25,0,0,.7)),
+                  backgroundImage: `linear-gradient(rgba(25,25,25,.9), rgba(25,0,0,.7)),
                                   url(https://namednibook.ru/img/phenomena/${year}/${
                     phenomena.slug
                   }.jpg)`,
@@ -86,7 +86,7 @@ export default class extends React.Component {
   }
 }
 
-function roundPhenomenasCount(yearPhenomenas, year) {
+function roundPhenomenasCount(yearPhenomenas) {
   const lack = 4 - (yearPhenomenas.length % 4);
 
   if (lack === 4) {
@@ -108,15 +108,14 @@ function roundPhenomenasCount(yearPhenomenas, year) {
   const short = res.filter(({ long }) => !long);
   const long = res.filter(({ long }) => long);
 
-  // TODO: см 1939 год
   if (long.length >= 1) {
-    short.splice(4 + (year % 3), 0, long[0]);
+    short.splice(4, 0, long[0]);
   }
   if (long.length >= 2) {
-    short.splice(Math.floor(short.length / 8) * 4 + 1 - (year % 3), 0, long[1]);
+    short.splice(Math.floor(short.length / 8) * 4 + 1, 0, long[1]);
   }
   if (long.length >= 3) {
-    short.splice(-1, 0, long[2]);
+    short.push(long[2]);
   }
 
   return short;
