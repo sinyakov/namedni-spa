@@ -1,0 +1,28 @@
+.main__grid {
+  display: flex;
+}
+
+.main__column {
+  width: 420px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+}
+
+.main__header {
+  width: 100%;
+  font-size: 28px;
+  margin: 6px 0;
+  line-height: 1;
+}
+
+.main__img {
+  margin-right: 8px;
+}
+
+.main__block {
+  border-radius: 6px;
+  display: flex;
+  overflow: hidden;
+  background: #eee;
+}
