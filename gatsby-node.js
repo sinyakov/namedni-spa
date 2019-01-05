@@ -1,4 +1,5 @@
 const path = require(`path`);
+const cheerio = require('cheerio');
 const _ = require('lodash');
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -14,6 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
               slug
               title
               excerpt
+              content
               categories {
                 name
               }
@@ -44,15 +46,26 @@ exports.createPages = async ({ graphql, actions }) => {
 
     phenomenasMeta[node.slug] = {
       title: node.title,
+      excerpt: node.excerpt,
       year,
     };
+  });
+
+  phenomenasRaw.forEach(({ node }) => {
+    const year = node.categories[0].name;
+    const $ = cheerio.load(node.content);
+    const links = $('a');
+    const slugs = links
+      .map((i, el) => $(el).attr('href'))
+      .get()
+      .map(x => x.slice(1, -5));
 
     createPage({
       path: `/${node.slug}.html`,
       component: phenomenaTemplate,
       context: {
         id: node.id,
-        // meta: phenomenasMeta,
+        meta: _.pick(phenomenasMeta, slugs),
         yearPhenomenas: phenomenasByYear[year],
       },
     });
@@ -149,8 +162,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   Object.keys(riArticles).forEach(category => {
     riArticles[category].forEach(({ html, title, index }) => {
-      console.log(category, index, title);
-
       createPage({
         path: `/ri/${category}/${index}.html`,
         component: riTemplate,

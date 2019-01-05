@@ -11,7 +11,7 @@ import { PhenomenasList } from './sidebar/PhenomenasList';
 export default class extends React.Component {
   state = {
     previewStyles: {},
-    previewText: null,
+    previewSlug: null,
     links: [],
   };
 
@@ -63,19 +63,19 @@ export default class extends React.Component {
 
   changePreview = event => {
     this.setState(() => ({
-      previewText: (event.target.pathname + ' ').repeat(Math.random() * 6 + 3),
+      previewSlug: event.target.pathname.slice(1, -5),
     }));
   };
 
   render() {
     const { data, pageContext } = this.props;
     const { title, content, categories, slug } = data.wordpressPost;
-    const { yearPhenomenas } = pageContext;
+    const { yearPhenomenas, meta } = pageContext;
     const otherPhenomenas = yearPhenomenas.filter(
       phenomena => phenomena.slug !== slug
     );
 
-    const { previewStyles, previewText, links } = this.state;
+    const { previewStyles, previewSlug, links } = this.state;
 
     const year = +categories[0].name;
 
@@ -99,9 +99,23 @@ export default class extends React.Component {
                 className="post__content"
                 dangerouslySetInnerHTML={{ __html: innerHTML }}
               />
-              {links.length > 0 && (
-                <div className="post-preview" style={previewStyles}>
-                  {previewText}
+              {links.length > 0 && previewSlug && (
+                <div
+                  class="post-preview"
+                  key={previewSlug}
+                  style={previewStyles}
+                >
+                  <h3 class="post-preview__header">
+                    {meta[previewSlug].title}{' '}
+                    <span class="post-preview__year">
+                      {meta[previewSlug].year}
+                    </span>
+                  </h3>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: meta[previewSlug].excerpt,
+                    }}
+                  />
                 </div>
               )}
             </div>
