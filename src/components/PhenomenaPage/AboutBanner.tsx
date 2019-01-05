@@ -1,5 +1,6 @@
 import React from "react";
 
+import "src/components/PhenomenaPage/AboutBanner.css";
 export const AboutBanner = () => (
   <div className="banner">
     <div className="banner__inner">

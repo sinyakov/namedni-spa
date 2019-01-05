@@ -1,12 +1,12 @@
-import { graphql } from "gatsby";
-import React from "react";
+import { graphql } from 'gatsby';
+import React from 'react';
 
-import Layout from "../Layout/layout";
-import SEO from "../seo";
+import Layout from '../Layout/layout';
+import SEO from '../seo';
 
-import { AboutBanner } from "./AboutBanner";
-import { CurrentYearBlock } from "./sidebar/currentYearBlock";
-import { PhenomenasList } from "./sidebar/PhenomenasList";
+import { AboutBanner } from './AboutBanner';
+import { CurrentYearBlock } from './sidebar/currentYearBlock';
+import { PhenomenasList } from './sidebar/PhenomenasList';
 
 export default class extends React.Component {
   state = {
@@ -18,35 +18,35 @@ export default class extends React.Component {
   markdown = React.createRef();
 
   componentDidMount() {
-    const links = this.markdown.current.querySelectorAll("a");
+    const links = this.markdown.current.querySelectorAll('a');
 
     this.setState({ links });
 
-    window.addEventListener("scroll", this.hidePreview);
+    window.addEventListener('scroll', this.hidePreview);
 
     links.forEach(link => {
-      link.addEventListener("mousemove", this.showPreview);
-      link.addEventListener("mouseenter", this.changePreview);
-      link.addEventListener("mouseleave", this.hidePreview);
+      link.addEventListener('mousemove', this.showPreview);
+      link.addEventListener('mouseenter', this.changePreview);
+      link.addEventListener('mouseleave', this.hidePreview);
     });
   }
 
   componentWillUnmount() {
     const { links } = this.state;
 
-    window.removeEventListener("scroll", this.hidePreview);
+    window.removeEventListener('scroll', this.hidePreview);
 
     links.forEach(link => {
-      link.removeEventListener("mousemove", this.showPreview);
-      link.removeEventListener("mouseenter", this.changePreview);
-      link.removeEventListener("mouseleave", this.hidePreview);
+      link.removeEventListener('mousemove', this.showPreview);
+      link.removeEventListener('mouseenter', this.changePreview);
+      link.removeEventListener('mouseleave', this.hidePreview);
     });
   }
 
   showPreview = event => {
     this.setState({
       previewStyles: {
-        display: "block",
+        display: 'block',
         top: event.clientY + 15,
         left: Math.min(event.clientX + 15, window.innerWidth - 400 - 15),
       },
@@ -56,14 +56,14 @@ export default class extends React.Component {
   hidePreview = () => {
     this.setState({
       previewStyles: {
-        display: "none",
+        display: 'none',
       },
     });
   };
 
   changePreview = event => {
     this.setState(() => ({
-      previewText: (event.target.pathname + " ").repeat(Math.random() * 6 + 3),
+      previewText: (event.target.pathname + ' ').repeat(Math.random() * 6 + 3),
     }));
   };
 
@@ -82,8 +82,8 @@ export default class extends React.Component {
     const hasImage = year <= 1940 || year >= 1995;
     const innerHTML = hasImage
       ? content.replace(
-          "<!--more--></p>",
-          `</p><img class="post__img" src="https://namednibook.ru/img/phenomena/${year}/${slug}.jpg">`
+          '<!--more--></p>',
+          `</p><img class="post__img" src="/img/phenomena/${year}/${slug}.jpg">`
         )
       : content;
 
@@ -105,7 +105,9 @@ export default class extends React.Component {
                 </div>
               )}
             </div>
-            <AboutBanner />
+            <div className="post__banner">
+              <AboutBanner />
+            </div>
           </article>
 
           <aside className="sidebar">

@@ -6,6 +6,7 @@ import { getVolumeByYear } from "src/utils/getVolumeByYear";
 
 interface IProps {
   year: number;
+  data: any;
 }
 
 export const CurrentYearBlock: React.SFC<IProps> = ({ year }) => {
@@ -16,7 +17,7 @@ export const CurrentYearBlock: React.SFC<IProps> = ({ year }) => {
     <div className="sidebar__year">
       <img
         className="sidebar__volume-cover"
-        src=""
+        src={`/img/volumes/covers/${volume}.jpg`}
         alt={`Обложка тома ${volume}.`}
       />
       <div className="sidebar__year-inner">

@@ -1,7 +1,9 @@
-const MIN_YEAR = 1931;
-const MAX_YEAR = 2010;
-const HOLE_START = 1941;
-const HOLE_END = 1945;
+import {
+  HOLE_END,
+  HOLE_START,
+  MAX_YEAR,
+  MIN_YEAR,
+} from "./computeYearsInterval";
 
 const computePrevYear = (year: number) => {
   if (year === MIN_YEAR) {

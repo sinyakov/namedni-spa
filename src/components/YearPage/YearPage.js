@@ -7,6 +7,8 @@ import cx from 'classnames';
 import Layout from '../Layout/layout';
 import SEO from '../seo';
 import { computeNearYears } from '../../utils/computeNearYears';
+import { getVolumeByYear } from '../../utils/getVolumeByYear';
+import { computeYearsInterval } from '../../utils/computeYearsInterval';
 import { AboutBanner } from '../PhenomenaPage/AboutBanner';
 
 export default class extends React.Component {
@@ -16,6 +18,7 @@ export default class extends React.Component {
     const { prevYear, nextYear } = computeNearYears(+year);
 
     const phenomenas = roundPhenomenasCount(yearPhenomenas);
+    const volumeYears = computeYearsInterval(+year);
 
     return (
       <Layout>
@@ -41,32 +44,45 @@ export default class extends React.Component {
         </div>
 
         <div className="grid">
-          {phenomenas.map(phenomena => (
-            <Link
-              className={cx(
-                'grid__phenomena',
-                phenomena.long && 'grid__phenomena_long'
-              )}
-              key={phenomena.slug}
-              to={`/${phenomena.slug}.html`}
-              css={{
-                backgroundImage: `linear-gradient(rgba(25,25,25,.75), rgba(25,0,0,.5)),
-                                  url(https://namednibook.ru/img/phenomena/${year}/${
-                  phenomena.slug
-                }.jpg)`,
-                ':hover': {
-                  backgroundImage: `linear-gradient(rgba(25,25,25,.9), rgba(25,0,0,.7)),
-                                  url(https://namednibook.ru/img/phenomena/${year}/${
-                    phenomena.slug
-                  }.jpg)`,
-                },
-              }}
-            >
-              {phenomena.title}
-            </Link>
-          ))}
+          {phenomenas.map(({ title, slug, long }) => {
+            const imgPath = `/img/phenomena/${year}/${slug}.jpg`;
+            const classname = cx(
+              'grid__phenomena',
+              long && 'grid__phenomena_long'
+            );
+
+            return (
+              <Link
+                className={classname}
+                key={slug}
+                to={`/${slug}.html`}
+                css={{
+                  backgroundImage: `linear-gradient(rgba(25,25,25,.75), rgba(25,0,0,.5)), url(${imgPath})`,
+                  ':hover': {
+                    backgroundImage: `linear-gradient(rgba(25,25,25,.9), rgba(25,0,0,.7)), url(${imgPath})`,
+                  },
+                }}
+              >
+                {title}
+              </Link>
+            );
+          })}
         </div>
+
         <footer className="year__footer">
+          <div className="year__foter-list">
+            {volumeYears.map(y =>
+              +year === y ? (
+                <span className="year__foter-item year__foter-item_current">
+                  {y}
+                </span>
+              ) : (
+                <Link to={`/years/${y}`} className="year__foter-item">
+                  {y}
+                </Link>
+              )
+            )}
+          </div>
           <div className="year__footer-left">
             <AboutBanner />
           </div>

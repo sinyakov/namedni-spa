@@ -4,6 +4,13 @@ body {
   flex-direction: column;
   font-family: 'PT Sans Caption', Verdana;
   font-size: 16px;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 ul,
@@ -48,7 +55,7 @@ a:hover {
 
 .wrapper {
   position: relative;
-  max-width: 1080px;
+  max-width: 1110px;
   margin: 0 auto;
   padding: 0 15px;
 }
@@ -626,6 +633,10 @@ a:hover {
   margin-bottom: 10px;
 }
 
+.post__banner {
+  margin: 16px 0;
+}
+
 .invisible {
   display: none;
 }
@@ -823,56 +834,6 @@ a:hover {
 
 }
 
-.banner {
-  width: 100%;
-  margin: 30px 0;
-  padding: 15px;
-  border: 1px solid #000;
-  box-sizing: border-box;
-  background-color: #345;
-  /* background-image: url(/img/home/parfenov.png); */
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position: left calc(12% - 60px) bottom 0;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 0.9em;
-}
-
-.banner a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.banner a:hover {
-  text-decoration: none;
-}
-
-.banner__header {
-  margin-bottom: 8px;
-}
-
-.banner__inner {
-  margin-left: 200px;
-}
-
-@media (max-width: 550px) {
-  .banner {
-    background-size: 200px;
-    background-position: left 80px bottom;
-  }
-
-  .banner__inner {
-    margin-left: 0;
-    margin-bottom: 200px;
-  }
-}
-
-@media (max-width: 390px) {
-  .banner {
-    background-position: center bottom;
-  }
-}
 
 /*--------------------- MOVIES ---------------------*/
 
@@ -1705,6 +1666,7 @@ a:hover {
 }
 
 .year__footer {
+  margin: 30px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -1717,10 +1679,67 @@ a:hover {
 .year__footer-right {
   font-size: 0.9em;
   width: 348px;
-  margin: 30px 0;
   background: linear-gradient(90deg, #327738, #1c7960);
   border-radius: 4px;
   padding: 15px;
   box-sizing: border-box;
   color: #fff;
+}
+
+.year__foter-list {
+  width: 100%;
+  margin: 0 0 24px;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+  background: #eee;
+  border-radius: 4px;
+}
+
+.year__foter-item {
+  text-decoration: none;
+  padding: 0 10px;
+}
+
+.year__foter-item_current {
+  font-weight: 700;
+}
+
+
+@media (max-width: 1140px) {
+  .year__foter-list {
+    width: calc(50% - 6px);
+    order: 0;
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .year__footer-left {
+    margin-top: 24px;
+    width: 100%;
+    order: 2;
+  }
+
+  .year__footer-right {
+    width: calc(50% - 6px);
+    order: 1;
+  }
+}
+
+@media(max-width: 576px) {
+  .year__foter-list {
+    width: 100%;
+    margin: 12px 0;
+  }
+  
+  .year__footer-left {
+    margin: 12px 0;
+  }
+
+  .year__footer-right {
+    width: 100%
+  }
 }

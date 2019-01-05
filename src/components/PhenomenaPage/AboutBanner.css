@@ -1,0 +1,50 @@
+.banner {
+  width: 100%;
+  margin: 0;
+  padding: 15px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  background-color: #345;
+  background-image: url(/img/home/parfenov.png);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: left calc(12% - 60px) bottom 0;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.9em;
+}
+
+.banner a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.banner a:hover {
+  text-decoration: none;
+}
+
+.banner__header {
+  margin-bottom: 8px;
+}
+
+.banner__inner {
+  margin-left: 200px;
+}
+
+@media (max-width: 550px) {
+  .banner {
+    background-size: 200px;
+    background-position: left 80px bottom;
+  }
+
+  .banner__inner {
+    margin-left: 0;
+    margin-bottom: 200px;
+  }
+}
+
+@media (max-width: 390px) {
+  .banner {
+    background-position: center bottom;
+  }
+}
