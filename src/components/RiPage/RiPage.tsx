@@ -3,6 +3,7 @@ import React from "react";
 
 import Layout from "src/components/Layout/Layout";
 import SEO from "src/components/seo";
+import { IRuler, rulers } from "src/constants/ri";
 
 interface IChapter {
   title: string;
@@ -13,7 +14,7 @@ interface IChapter {
 interface IProps {
   pageContext: {
     html: string;
-    category: string;
+    category: IRuler;
     title: string;
     chapters: IChapter[];
     index: number;
@@ -21,11 +22,12 @@ interface IProps {
 }
 
 const RiPage: React.SFC<IProps> = ({ pageContext }) => {
-  const { html, index, title, chapters } = pageContext;
-  console.log({ chapters, index });
+  const { html, index, title, chapters, category } = pageContext;
+  console.log({ rulers, category });
 
   return (
     <Layout>
+      <SEO title={`${title} — ${rulers[category]}`} />
       <div className="ri-wrapper">
         <h1 className="ri-title__header">
           <span className="ri-title__section">Глава {index}</span> {title}
