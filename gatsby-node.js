@@ -90,6 +90,10 @@ exports.createPages = async ({ graphql, actions }) => {
     `
   );
 
+  const volumeTemplate = path.resolve(
+    './src/components/VolumePage/VolumePage.tsx'
+  );
+
   const markdowns = allMarkdown.data.allMarkdownRemark.edges;
   const riArticles = {};
 
@@ -109,6 +113,20 @@ exports.createPages = async ({ graphql, actions }) => {
 
     if (relativePath[0] === 'video') return;
     if (relativePath[0] === 'ri-contents') return;
+
+    if (relativePath[0] === 'volumes') {
+      const volume = relativePath[1].split('.')[0];
+
+      createPage({
+        path: `/volumes/${volume}`,
+        component: volumeTemplate,
+        context: {
+          html,
+          volume,
+          phenomenasByYear,
+        },
+      });
+    }
 
     if (relativePath[0] === 'ri') {
       const category = relativePath[1];

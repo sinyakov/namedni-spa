@@ -8,7 +8,7 @@ import Footer from "src/components/Layout/Footer";
 import Header from "src/components/Layout/Header";
 
 interface IProps {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode | React.ReactNode[];
 }
 
 const Layout: React.SFC<IProps> = ({ children }) => (
