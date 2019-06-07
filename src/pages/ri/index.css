@@ -1,5 +1,6 @@
 .main__grid {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .main__column {
@@ -18,11 +19,45 @@
 
 .main__img {
   margin-right: 8px;
+  width: 240px;
+  height: 320px;
 }
 
 .main__block {
-  border-radius: 6px;
+  /* border-radius: 6px; */
   display: flex;
   overflow: hidden;
-  background: #eee;
+  margin-bottom: 20px;
+  /* background: #eee; */
+}
+
+.riEpisodeList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.riEpisode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 900;
+  border-radius: 6px;
+  margin: 0 10px;
+  padding: 20px;
+  width: 180px;
+  height: 120px;
+  background-image: url(../resources/youtube.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: font-size 0.1s ease-in-out;
+}
+
+.riEpisode:hover {
+  color: #000;
+  font-size: 26px;
 }

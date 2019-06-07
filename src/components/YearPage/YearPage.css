@@ -1,0 +1,15 @@
+.namedniFooter {
+    padding: 15px;
+    background-image: url(https://images.vexels.com/media/users/3/158814/isolated/preview/d2765fcc15a1a4f2f029f5a0b084f66d-television-silhouette-by-vexels.png);
+    background-size: 110px;
+    background-repeat: no-repeat;
+    background-position: top 5px right -0px;
+}
+
+.namedniFooter__item:not(:last-child) {
+    margin: 0 0 6px;
+}
+
+.namedniFooter__title {
+    font-size: 18px;
+}

@@ -10,6 +10,7 @@ import { computeNearYears } from '../../utils/computeNearYears';
 import { getVolumeByYear } from '../../utils/getVolumeByYear';
 import { computeYearsInterval } from '../../utils/computeYearsInterval';
 import { AboutBanner } from '../PhenomenaPage/AboutBanner';
+import './YearPage.css';
 
 export default class extends React.Component {
   render() {
@@ -86,16 +87,26 @@ export default class extends React.Component {
           <div className="year__footer-left">
             <AboutBanner />
           </div>
-          <div className="year__footer-right">
-            <div className="">
-              <h2 className="banner__header">Смотреть видеоверсию 📺</h2>
-              <p>
-                Автор телепроектов «Намедни» и «Российская империя». Пятикратный
-                лауреат ТЭФИ.
-              </p>
-              <p>Автор телепроектов «Намедни» и «Российская империя».</p>
+          <Link to={`/namedni/${year}`} className="year__footer-right">
+            <div className="namedniFooter">
+              {/* <h2 className="banner__header">Смотреть видеоверсию 📺</h2> */}
+              <ul>
+                <li className="namedniFooter__item">
+                  <strong className="namedniFooter__title">Намедни 1946-1960</strong>
+                  <br />
+                  на ютюб-канале «Парфенон»
+                </li>
+                <li className="namedniFooter__item">
+                  <strong className="namedniFooter__title">Намедни 1961-2000</strong>
+                  <br />в классической зеленой студии
+                </li>
+                <li className="namedniFooter__item">
+                  <strong className="namedniFooter__title">Намедни 2001-2003</strong>
+                  <br />в рамках информационно-аналитической программы «Намедни»
+                </li>
+              </ul>
             </div>
-          </div>
+          </Link>
         </footer>
       </Layout>
     );

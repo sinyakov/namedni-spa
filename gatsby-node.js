@@ -175,4 +175,40 @@ exports.createPages = async ({ graphql, actions }) => {
       });
     });
   });
+
+
+  const parfenon = [
+    {
+      id: 1,
+      title: 'Парфенон #1: Леонид Парфенов о дагестанском деле, Берлине, Башлачеве и Березовском',
+      youtube: 'sqEt9l57YNY'
+    },
+    {
+      id: 2,
+      title: 'Парфенон #2: Леонид Парфенов о Нью-Йорке, русской армии, Череповце и рокировке',
+      youtube: 'nu5fpjQXliY'
+    },
+    {
+      id: 1,
+      title: 'Парфенон #3: Леонид Парфенов о Канаде, Довлатове, Гайавате и том самом Послании',
+      youtube: 'RghX43tU1ds'
+    },
+  ];
+
+  const parfenonTemplate = path.resolve('./src/components/ParfenonPage/ParfenonPage.jsx');
+
+
+  parfenon.forEach(({id, title, youtube}, index) => {
+    createPage({
+      path: `/parfenon/${youtube}.html`,
+      component: parfenonTemplate,
+      context: {
+        id,
+        title,
+        youtube,
+        prev: index > 0 ? parfenon[index - 1] : null,
+        next: index < parfenon.length - 1 ? parfenon[index + 1] : null,
+      },
+    })
+  })
 };

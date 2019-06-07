@@ -1,10 +1,14 @@
 body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   font-family: 'PT Sans Caption', Verdana;
   font-size: 16px;
   box-sizing: border-box;
+  /* hanging-punctuation: first; */
+}
+
+#___gatsby > div {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 *,
@@ -193,7 +197,7 @@ a:hover {
 @media (max-width: 768px) {
   .main-header {
     padding: 5px 0;
-    font-size: .8em;
+    font-size: 0.8em;
   }
 }
 
@@ -229,18 +233,118 @@ a:hover {
   font-size: 15px;
 }
 
+.home-section--book .home-section__title {
+  font-size: 1.8em;
+  padding: 16px 0 0;
+}
+
+.home-section--book > div {
+  max-width: 300px;
+}
+
+.home-section--book img {
+  float: right;
+  max-width: 175px;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+@media (max-width: 1140px) {
+  .home-section--book {
+    margin-bottom: 30px;
+  }
+
+  .home-section--book img {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-section--book {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-section--book h1 {
+    order: 2;
+  }
+
+  .home-section--book img {
+    order: 1;
+  }
+
+  .home-section--book img {
+    float: none;
+    align-self: center;
+    margin: 20px 0 0;
+  }
+}
+
 .home-section--karaoke {
   padding: 15px;
   padding-right: 280px;
   margin: 0 -15px 20px;
-  background-color: #14315d;
-  /* background-image: url(../img/home/parfenov-karaoke.png); */
+  background: url(https://namednibook.ru/img/home/parfenov-karaoke.png) bottom 0
+      right 30px / 240px no-repeat,
+    linear-gradient(to right, rgb(146, 42, 42), rgb(36, 31, 68));
+  /* background: #000;
+  background-image: url(https://namednibook.ru/img/home/parfenov-karaoke.png);
   background-position: bottom 0 right 30px;
-  background-repeat: no-repeat;
-  background-size: 240px;
+  background-repeat: no-repeat; 
+  background-size: 240px; */
   color: #fff;
   font-size: 16px;
   border-radius: 4px;
+}
+
+.home-section--namednivideo {
+  /* background: black; */
+}
+.home-section--namednivideo img {
+  border-radius: 6px;
+}
+
+.home-section--namednivideo h2 {
+  font-size: 1.8em;
+  position: absolute;
+  padding: 16px;
+  color: #fff;
+}
+
+.home-section--parfenon {
+  /* margin: 20px 0 40px; */
+  /* padding: 32px; */
+  /* background: #cce8ff; */
+  /* transform: rotate(2.5deg); */
+}
+
+.home-section--parfenon__description {
+  font-size: 1.15em;
+  margin: 0 0 24px;
+}
+
+.home-section__inner {
+  /* transform: rotate(-2.5deg); */
+}
+
+.home-section--parfenon img {
+  margin: 0 0 8px;
+  border-radius: 6px;
+}
+
+.home-section--parfenon .home-section__title {
+  font-size: 1.8em;
+}
+
+.parfenon-preview {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.parfenon-preview p {
+  /* padding: 6px; */
+  /* background: #eee; */
+  /* border-radius: 6px; */
 }
 
 .home-section__title {
@@ -271,7 +375,6 @@ a:hover {
 .home-movie__inner {
   position: relative;
   display: inline-block;
-  margin-right: 145px;
 }
 
 .home-movie__poster--vertical {
@@ -333,9 +436,6 @@ a:hover {
     width: 100%;
   }
 
-  .home-movie__inner {
-    margin-right: 145px;
-  }
   .home-movie__poster--vertical {
     display: block;
   }
@@ -562,11 +662,10 @@ a:hover {
 }
 
 .volume__img {
-  width: 29.62962963%;  /* 320 / 1080 */
-} 
+  width: 29.62962963%; /* 320 / 1080 */
+}
 
 @media (max-width: 1140px) {
-
   .volume {
     display: block;
   }
@@ -576,7 +675,7 @@ a:hover {
   }
   .volume__img {
     display: none;
-  } 
+  }
 }
 
 /*--------------------- POST ---------------------*/
@@ -750,7 +849,6 @@ a:hover {
   text-align: center;
 }
 
-
 .sidebar__header {
   font-size: 1.25em;
   margin-bottom: 6px;
@@ -765,7 +863,6 @@ a:hover {
 }
 
 @media (min-width: 1141px) {
-
   .sidebar__curr-year {
     width: 100%;
     font-size: 32px;
@@ -784,11 +881,9 @@ a:hover {
   .sidebar__nearby-year--next {
     right: -2em;
   }
-
 }
 
 @media (max-width: 1140px) {
-
   .post-wrapper {
     flex-direction: column;
   }
@@ -831,9 +926,7 @@ a:hover {
     margin-top: 5px;
     bottom: 0;
   }
-
 }
-
 
 /*--------------------- MOVIES ---------------------*/
 
@@ -1212,11 +1305,9 @@ a:hover {
 
 /*--------------------- RI ---------------------*/
 
-
 .ri-wrapper {
   max-width: 720px;
 }
-
 
 .ri__grid {
   position: relative;
@@ -1616,8 +1707,8 @@ a:hover {
   margin-right: 6px;
   margin-left: 6px;
   transition: transform 0.3s ease-in-out;
-  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
-
+  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
+    1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
 
 .grid__phenomena_long {
@@ -1632,7 +1723,7 @@ a:hover {
   transform: scale(0.98);
 }
 
-@media(max-width: 1140px) {
+@media (max-width: 1140px) {
   .grid__phenomena {
     width: calc(50% - 12px);
   }
@@ -1642,7 +1733,7 @@ a:hover {
   }
 }
 
-@media(max-width: 576px) {
+@media (max-width: 576px) {
   .grid__phenomena {
     font-size: 20px;
     height: 160px;
@@ -1680,8 +1771,15 @@ a:hover {
   width: 348px;
   background: linear-gradient(90deg, #327738, #1c7960);
   border-radius: 4px;
-  padding: 15px;
+  /* padding: 15px; */
   box-sizing: border-box;
+  color: #fff;
+  text-decoration: none;
+  /* transition: all 0.5s ease-in-out; */
+}
+
+.year__footer-right:hover {
+  background: linear-gradient(90deg, #327760, #1c7979);
   color: #fff;
 }
 
@@ -1707,7 +1805,6 @@ a:hover {
   font-weight: 700;
 }
 
-
 @media (max-width: 1140px) {
   .year__foter-list {
     width: calc(50% - 6px);
@@ -1715,7 +1812,7 @@ a:hover {
     margin: 0;
     font-size: 24px;
   }
-  
+
   .year__footer-left {
     margin-top: 24px;
     width: 100%;
@@ -1728,17 +1825,17 @@ a:hover {
   }
 }
 
-@media(max-width: 576px) {
+@media (max-width: 576px) {
   .year__foter-list {
     width: 100%;
     margin: 12px 0;
   }
-  
+
   .year__footer-left {
     margin: 12px 0;
   }
 
   .year__footer-right {
-    width: 100%
+    width: 100%;
   }
 }

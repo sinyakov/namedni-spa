@@ -10,9 +10,9 @@ export type IRuler =
   | "petr-i";
 
 export const rulers: { [key in IRuler]: string } = {
-  "alexander-i": "Алексаендр I",
-  "alexander-ii": "Алексаендр I",
-  "alexander-iii": "Алексаендр III",
+  "alexander-i": "Александр I",
+  "alexander-ii": "Александр I",
+  "alexander-iii": "Александр III",
   "bez-petra": "Без Петра",
   "ekaterina-ii": "Екатерина II",
   "nikolay-i": "Николай I",
