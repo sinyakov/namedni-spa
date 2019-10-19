@@ -31,17 +31,17 @@ module.exports = {
         display: `minimal-ui`,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-yandex-metrica`,
-    //   options: {
-    //     trackingId: "44300204",
-    //     clickmap: true,
-    //     trackLinks: true,
-    //     accurateTrackBounce: true,
-    //     trackHash: true,
-    //      webvisor: true,
-    //   }
-    // },
+    {
+      resolve: `gatsby-plugin-yandex-metrica`,
+      options: {
+        trackingId: "44300204",
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true,
+         webvisor: true,
+      }
+    },
     {
       resolve: 'gatsby-source-wordpress',
       options: {

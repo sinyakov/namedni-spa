@@ -194,6 +194,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
 
   const parfenonTemplate = path.resolve('./src/components/ParfenonPage/ParfenonPage.jsx');
+  const namedniTemplate = path.resolve('./src/components/NamedniPage/NamedniPage.jsx');
 
   parfenon.forEach(({ id, title, youtube }, index) => {
     createPage({
@@ -211,12 +212,13 @@ exports.createPages = async ({ graphql, actions }) => {
   namedni.forEach(({ year, youtube }, index) => {
     createPage({
       path: `/namedni/${year}`,
-      component: parfenonTemplate,
+      component: namedniTemplate,
       context: {
-        title: `Намедни-${year}`,
+        year,
         youtube,
         prev: index > 0 ? namedni[index - 1] : null,
         next: index < namedni.length - 1 ? namedni[index + 1] : null,
+        yearPhenomenas: phenomenasByYear[year],
       },
     })
   })

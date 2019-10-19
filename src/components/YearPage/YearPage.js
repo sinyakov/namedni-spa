@@ -11,12 +11,15 @@ import { getVolumeByYear } from '../../utils/getVolumeByYear';
 import { computeYearsInterval } from '../../utils/computeYearsInterval';
 import { AboutBanner } from '../PhenomenaPage/AboutBanner';
 import './YearPage.css';
+import { namedni } from '../../../parfenon.js';
+import { isYearHasImage } from '../../utils/isYearHasImage';
 
 export default class extends React.Component {
   render() {
     const { pageContext } = this.props;
     const { year, yearPhenomenas } = pageContext;
     const { prevYear, nextYear } = computeNearYears(+year);
+    const currentYearVideo = namedni.find(video => video.year === +year);
 
     const phenomenas = roundPhenomenasCount(yearPhenomenas);
     const volumeYears = computeYearsInterval(+year);
@@ -46,23 +49,27 @@ export default class extends React.Component {
 
         <div className="grid">
           {phenomenas.map(({ title, slug, long }) => {
+            const yearHasImage = isYearHasImage(year);
+
             const imgPath = `/img/phenomena/${year}/${slug}.jpg`;
             const classname = cx(
               'grid__phenomena',
-              long && 'grid__phenomena_long'
+              long && 'grid__phenomena_long',
+              !yearHasImage && 'grid__phenomena_withoutImage'
             );
+            const css = yearHasImage ? {
+              backgroundImage: `linear-gradient(rgba(25,25,25,.75), rgba(25,0,0,.5)), url(${imgPath})`,
+              ':hover': {
+                backgroundImage: `linear-gradient(rgba(25,25,25,.9), rgba(25,0,0,.7)), url(${imgPath})`,
+              },
+            } : undefined;
 
             return (
               <Link
                 className={classname}
                 key={slug}
                 to={`/${slug}.html`}
-                css={{
-                  backgroundImage: `linear-gradient(rgba(25,25,25,.75), rgba(25,0,0,.5)), url(${imgPath})`,
-                  ':hover': {
-                    backgroundImage: `linear-gradient(rgba(25,25,25,.9), rgba(25,0,0,.7)), url(${imgPath})`,
-                  },
-                }}
+                css={css}
               >
                 {title}
               </Link>
@@ -78,35 +85,44 @@ export default class extends React.Component {
                   {y}
                 </span>
               ) : (
-                <Link to={`/years/${y}`} className="year__foter-item">
-                  {y}
-                </Link>
-              )
+                  <Link to={`/years/${y}`} className="year__foter-item">
+                    {y}
+                  </Link>
+                )
             )}
           </div>
           <div className="year__footer-left">
             <AboutBanner />
           </div>
-          <Link to={`/namedni/${year}`} className="year__footer-right">
-            <div className="namedniFooter">
-              {/* <h2 className="banner__header">Смотреть видеоверсию 📺</h2> */}
-              <ul>
-                <li className="namedniFooter__item">
-                  <strong className="namedniFooter__title">Намедни 1946-1960</strong>
-                  <br />
-                  на ютюб-канале «Парфенон»
-                </li>
-                <li className="namedniFooter__item">
-                  <strong className="namedniFooter__title">Намедни 1961-2000</strong>
-                  <br />в классической зеленой студии
-                </li>
-                <li className="namedniFooter__item">
-                  <strong className="namedniFooter__title">Намедни 2001-2003</strong>
-                  <br />в рамках информационно-аналитической программы «Намедни»
-                </li>
-              </ul>
-            </div>
-          </Link>
+          {currentYearVideo ? <Link to={`/namedni/${year}`} className="year__footer-right">
+            {(year >= 1946 && year <= 1960) ? (
+              <picture>
+                <source
+                  srcSet={`https://i.ytimg.com/vi_webp/${
+                    currentYearVideo.youtube
+                    }/maxresdefault.webp`}
+                  type="image/webp"
+                />
+                <img
+                  className="video__media"
+                  src={`https://i.ytimg.com/vi/${
+                    currentYearVideo.youtube
+                    }/maxresdefault.jpg`}
+                  alt={currentYearVideo.year}
+                />
+              </picture>
+            ) : (
+                <div className="namedniFooter">
+                  <h2 className="namedniFooter__title">Смотреть видеоверсию<br />Намедни-{year}</h2>
+                </div>
+              )}
+          </Link> : (
+              <div className="year__footer-right">
+                <div className="namedniFooter namedniFooter_gray">
+                  <h2 className="namedniFooter__title">Видеоверсия отсутствует</h2>
+                </div>
+              </div>
+            )}
         </footer>
       </Layout>
     );

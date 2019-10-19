@@ -1,9 +1,9 @@
 .namedniFooter {
     padding: 15px;
-    background-image: url(https://images.vexels.com/media/users/3/158814/isolated/preview/d2765fcc15a1a4f2f029f5a0b084f66d-television-silhouette-by-vexels.png);
-    background-size: 110px;
-    background-repeat: no-repeat;
-    background-position: top 5px right -0px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .namedniFooter__item:not(:last-child) {
@@ -11,5 +11,12 @@
 }
 
 .namedniFooter__title {
-    font-size: 18px;
+    font-size: 1.7em;
+    text-align: center;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.namedniFooter_gray {
+    background: #aaa;
 }

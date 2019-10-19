@@ -7,22 +7,23 @@ import SEO from '../components/seo';
 // https://github.com/gatsbyjs/gatsby/issues/2289
 // separate css file
 
-import { parfenon } from '../../parfenon.js';
+import { parfenon, namedni } from '../../parfenon.js';
 const lastParfenon = parfenon[parfenon.length - 1];
+const lastNamedni = namedni[namedni.length - 1];
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Намедни. Наша Эра | Леонид Парфенов" />
     <div className="home-blocks">
       <div className="home-blocks__column">
-        <section className="home-section home-section--namednivideo">
+        <a href={`/namedni/${lastNamedni.year}`} className="home-section home-section--namednivideo">
           <h2 className="home-section__title">
             «Намедни 1946-1960»
             <br />
             на ютуб-канале
           </h2>
           <img src="/img/home/namednivideo.png" />
-        </section>
+        </a>
       </div>
       <div className="home-blocks__column">
         <section className="home-section home-section--book">
@@ -138,12 +139,21 @@ const IndexPage = () => (
               className="parfenon-preview"
               to={`/parfenon/${lastParfenon.youtube}`}
             >
-              <img
-                src={`https://i.ytimg.com/vi_webp/${
-                  lastParfenon.youtube
-                }/maxresdefault.webp`}
-                alt="Последняя серия"
-              />
+              <picture>
+                <source
+                  srcSet={`https://i.ytimg.com/vi_webp/${
+                    lastParfenon.youtube
+                  }/maxresdefault.webp`}
+                  type="image/webp"
+                />
+                <img
+                  className="video__media"
+                  src={`https://i.ytimg.com/vi/${
+                    lastParfenon.youtube
+                  }/maxresdefault.jpg`}
+                  alt="Последняя серия"
+                />
+              </picture>
               <p>{lastParfenon.title}</p>
             </Link>
           </div>

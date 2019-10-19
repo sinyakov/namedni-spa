@@ -339,10 +339,13 @@ a:hover {
 }
 
 .home-section--namednivideo {
-  /* background: black; */
+  /* background-color: black; */
+  display: block;
 }
 .home-section--namednivideo img {
   border-radius: 6px;
+  background-color: black;
+  min-height: 120px;
 }
 
 .home-section--namednivideo h2 {
@@ -350,6 +353,12 @@ a:hover {
   position: absolute;
   padding: 16px;
   color: #fff;
+}
+
+@media (max-width: 420px) {
+  .home-section--namednivideo h2 {
+    font-size: 1.5em;
+  }  
 }
 
 .home-section--parfenon {
@@ -1767,12 +1776,25 @@ a:hover {
     1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
 
+.grid__phenomena_withoutImage {
+  text-shadow: none;
+  background: #f6f6f6;
+  border: 1px solid #aaa;
+  color: #000;
+  letter-spacing: 0;
+}
+
 .grid__phenomena_long {
   width: 534px;
 }
 
 .grid__phenomena:hover {
   color: #fff;
+}
+
+.grid__phenomena_withoutImage:hover {
+  background-color: #eee;
+  color: #000;
 }
 
 .grid__phenomena:active {
@@ -1823,6 +1845,7 @@ a:hover {
 }
 
 .year__footer-right {
+  overflow: hidden;
   font-size: 0.9em;
   width: 348px;
   background: linear-gradient(90deg, #327738, #1c7960);

@@ -6,6 +6,7 @@ import SEO from '../seo';
 import { AboutBanner } from './AboutBanner';
 import { CurrentYearBlock } from './sidebar/currentYearBlock';
 import { PhenomenasList } from './sidebar/PhenomenasList';
+import { isYearHasImage } from '../../utils/isYearHasImage'
 
 export default class extends React.Component {
   render() {
@@ -17,7 +18,7 @@ export default class extends React.Component {
 
     const year = +categories[0].name;
 
-    const hasImage = year <= 1940 || year >= 1995;
+    const hasImage = isYearHasImage(year);
     const innerHTML = hasImage
       ? content.replace(
         '<!--more--></p>',

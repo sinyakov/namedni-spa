@@ -1,22 +1,21 @@
-export const declineNoun = ([once, few, many]: string[]) => (count: number) => {
-  count = count % 100;
-
-  if (count % 10 === 1 && Math.floor(count / 10) !== 11) {
-    return once;
+export const declineNoun = ([one, two, five]: string[]) => (count: number) => {
+  count = Math.abs(count);
+  count %= 100;
+  if (count >= 5 && count <= 20) {
+    return five;
   }
-  if (
-    Math.floor(count / 10) % 10 >= 2 &&
-    Math.floor(count / 10) % 10 <= 4 &&
-    Math.floor(count / 10) !== 1
-  ) {
-    return few;
+  count %= 10;
+  if (count == 1) {
+    return one;
   }
-
-  return many;
+  if (count >= 2 && count <= 4) {
+    return two;
+  }
+  return five;
 };
 
 export const declinePhenomena = declineNoun([
-  "феномен",
-  "феномена",
-  "феноменов",
+  'феномен',
+  'феномена',
+  'феноменов',
 ]);

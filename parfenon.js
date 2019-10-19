@@ -264,6 +264,180 @@ const namedni = [
     year: 1953,
     youtube: 'Jf93R0UDYrw'
   },
+
+  
+  {
+    "year": 1961,
+    "youtube": "G8--kbTZbNE"
+  },
+  {
+    "year": 1962,
+    "youtube": "tqLJTiB3Go0"
+  },
+  {
+    "year": 1963,
+    "youtube": "a5bn8c_SPog"
+  },
+  {
+    "year": 1964,
+    "youtube": "cPT1fZPovs4"
+  },
+  {
+    "year": 1965,
+    "youtube": "TBVFK50KhNU"
+  },
+  {
+    "year": 1966,
+    "youtube": "l4ATG90jKlc"
+  },
+  {
+    "year": 1967,
+    "youtube": "qzcb0XqUq34"
+  },
+  {
+    "year": 1968,
+    "youtube": "UW8dEe35WyA"
+  },
+  {
+    "year": 1969,
+    "youtube": "7HWKxkZjLqk"
+  },
+  {
+    "year": 1970,
+    "youtube": "hKLAQKX8iZs"
+  },
+  {
+    "year": 1971,
+    "youtube": "uc_r9u8UKkw"
+  },
+  {
+    "year": 1972,
+    "youtube": "LyPckbsOKno"
+  },
+  {
+    "year": 1973,
+    "youtube": "-RHbx8Fx4YU"
+  },
+  {
+    "year": 1974,
+    "youtube": "dTEvGlpnGD8"
+  },
+  {
+    "year": 1975,
+    "youtube": "aH4aoJQiL6I"
+  },
+  {
+    "year": 1976,
+    "youtube": "2F3bSkvqX-8"
+  },
+  {
+    "year": 1977,
+    "youtube": "Dm99HPlN-IM"
+  },
+  {
+    "year": 1978,
+    "youtube": "GmZtHVEH-vo"
+  },
+  {
+    "year": 1979,
+    "youtube": "BqWgLh_lYcA"
+  },
+  {
+    "year": 1980,
+    "youtube": "If2FTIT7-VE"
+  },
+  {
+    "year": 1981,
+    "youtube": "hRFKaL0Y5ic"
+  },
+  {
+    "year": 1982,
+    "youtube": "kheOGIsJ7bw"
+  },
+  {
+    "year": 1983,
+    "youtube": "Bhui8Do3eAc"
+  },
+  {
+    "year": 1984,
+    "youtube": "N6vgFa0JwEA"
+  },
+  {
+    "year": 1985,
+    "youtube": "iuRKsxaBF_s"
+  },
+  {
+    "year": 1986,
+    "youtube": "8e6gCqHbOmY"
+  },
+  {
+    "year": 1987,
+    "youtube": "Qn0zVvIvzRo"
+  },
+  {
+    "year": 1988,
+    "youtube": "ejTnbysX-uI"
+  },
+  {
+    "year": 1989,
+    "youtube": "njXOU2HQZUQ"
+  },
+  {
+    "year": 1990,
+    "youtube": "_vWmODn6zrI"
+  },
+  {
+    "year": 1991,
+    "youtube": "nStdf6JwHMo"
+  },
+  {
+    "year": 1992,
+    "youtube": "gEAPmsLoUmY"
+  },
+  {
+    "year": 1993,
+    "youtube": "OAEkkSPvzdk"
+  },
+  {
+    "year": 1994,
+    "youtube": "5FMZ1zELCP8"
+  },
+  {
+    "year": 1995,
+    "youtube": "Dp7g_vdoy_U"
+  },
+  {
+    "year": 1996,
+    "youtube": "BLaMHglKFgI"
+  },
+  {
+    "year": 1997,
+    "youtube": "30b-Y7RaxHI"
+  },
+  {
+    "year": 1998,
+    "youtube": "X7D2m2RB2tg"
+  },
+  {
+    "year": 1999,
+    "youtube": "ST5KiXRQruk"
+  },
+  {
+    "year": 2000,
+    "youtube": "8zsSYjarWOQ"
+  },
+  {
+    "year": 2001,
+    "youtube": "AiIXD6Hy5NY"
+  },
+  {
+    "year": 2002,
+    "youtube": "M3z393aHzPY"
+  },
+  {
+    "year": 2003,
+    "youtube": "pA-oGToJTXw"
+  },
 ];
 
 module.exports = {
