@@ -47,7 +47,7 @@ export default function ParfenonPage({ pageContext }) {
             </a>
           )}
           {next && (
-            <a className="nav-link next" href={`/parfenon/${next.youtube}`}>
+            <a key='next' className="nav-link next" href={`/parfenon/${next.youtube}`}>
               <picture>
                 <source
                   srcSet={`https://i.ytimg.com/vi_webp/${
