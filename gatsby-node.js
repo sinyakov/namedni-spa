@@ -1,6 +1,8 @@
 const path = require(`path`);
 const cheerio = require('cheerio');
 const _ = require('lodash');
+const htmlToText = require('html-to-text');
+const { parfenon, namedni } = require('./parfenon');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -38,13 +40,13 @@ exports.createPages = async ({ graphql, actions }) => {
     year: node.categories[0].name,
   }));
 
-  const phenomenasMeta = {};
+  const meta = {};
   const phenomenasByYear = _.groupBy(phenomenas, 'year');
 
   phenomenasRaw.forEach(({ node }) => {
     const year = node.categories[0].name;
 
-    phenomenasMeta[node.slug] = {
+    meta[node.slug] = {
       title: node.title,
       excerpt: node.excerpt,
       year,
@@ -53,20 +55,33 @@ exports.createPages = async ({ graphql, actions }) => {
 
   phenomenasRaw.forEach(({ node }) => {
     const year = node.categories[0].name;
-    const $ = cheerio.load(node.content);
+    const $ = cheerio.load(node.content, { decodeEntities: false });
     const links = $('a');
-    const slugs = links
-      .map((i, el) => $(el).attr('href'))
-      .get()
-      .map(x => x.slice(1, -5));
+
+    // console.log(meta);
+
+    links.each((_, link) => {
+      const url = $(link).attr("href").slice(1, -5);
+      // console.log($(link).attr("href"));
+      if (meta[url]) {
+        const text = htmlToText.fromString(meta[url].excerpt);
+        $(link).attr("data-preview", text);
+        $(link).attr("class", 'phenomenaLink');
+      } else {
+        console.log(url);
+      }
+    });
 
     createPage({
       path: `/${node.slug}.html`,
       component: phenomenaTemplate,
       context: {
         id: node.id,
-        meta: _.pick(phenomenasMeta, slugs),
         yearPhenomenas: phenomenasByYear[year],
+        title: node.title,
+        content: $.html(),
+        categories: node.categories,
+        slug: node.slug
       },
     });
   });
@@ -177,37 +192,31 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
 
-  const parfenon = [
-    {
-      id: 1,
-      title: 'Парфенон #1: Леонид Парфенов о дагестанском деле, Берлине, Башлачеве и Березовском',
-      youtube: 'sqEt9l57YNY'
-    },
-    {
-      id: 2,
-      title: 'Парфенон #2: Леонид Парфенов о Нью-Йорке, русской армии, Череповце и рокировке',
-      youtube: 'nu5fpjQXliY'
-    },
-    {
-      id: 1,
-      title: 'Парфенон #3: Леонид Парфенов о Канаде, Довлатове, Гайавате и том самом Послании',
-      youtube: 'RghX43tU1ds'
-    },
-  ];
 
   const parfenonTemplate = path.resolve('./src/components/ParfenonPage/ParfenonPage.jsx');
 
-
-  parfenon.forEach(({id, title, youtube}, index) => {
+  parfenon.forEach(({ id, title, youtube }, index) => {
     createPage({
-      path: `/parfenon/${youtube}.html`,
+      path: `/parfenon/${youtube}`,
       component: parfenonTemplate,
       context: {
-        id,
         title,
         youtube,
         prev: index > 0 ? parfenon[index - 1] : null,
         next: index < parfenon.length - 1 ? parfenon[index + 1] : null,
+      },
+    })
+  });
+
+  namedni.forEach(({ year, youtube }, index) => {
+    createPage({
+      path: `/namedni/${year}`,
+      component: parfenonTemplate,
+      context: {
+        title: `Намедни-${year}`,
+        youtube,
+        prev: index > 0 ? namedni[index - 1] : null,
+        next: index < namedni.length - 1 ? namedni[index + 1] : null,
       },
     })
   })

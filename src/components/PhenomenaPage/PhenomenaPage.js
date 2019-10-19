@@ -1,4 +1,3 @@
-import { graphql } from 'gatsby';
 import React from 'react';
 
 import Layout from '../Layout/layout';
@@ -9,82 +8,21 @@ import { CurrentYearBlock } from './sidebar/currentYearBlock';
 import { PhenomenasList } from './sidebar/PhenomenasList';
 
 export default class extends React.Component {
-  state = {
-    previewStyles: {},
-    previewSlug: null,
-    links: [],
-  };
-
-  markdown = React.createRef();
-
-  componentDidMount() {
-    const links = this.markdown.current.querySelectorAll('a');
-
-    this.setState({ links });
-
-    window.addEventListener('scroll', this.hidePreview);
-
-    links.forEach(link => {
-      link.addEventListener('mousemove', this.showPreview);
-      link.addEventListener('mouseenter', this.changePreview);
-      link.addEventListener('mouseleave', this.hidePreview);
-    });
-  }
-
-  componentWillUnmount() {
-    const { links } = this.state;
-
-    window.removeEventListener('scroll', this.hidePreview);
-
-    links.forEach(link => {
-      link.removeEventListener('mousemove', this.showPreview);
-      link.removeEventListener('mouseenter', this.changePreview);
-      link.removeEventListener('mouseleave', this.hidePreview);
-    });
-  }
-
-  showPreview = event => {
-    this.setState({
-      previewStyles: {
-        display: 'block',
-        top: event.clientY + 15,
-        left: Math.min(event.clientX + 15, window.innerWidth - 400 - 15),
-      },
-    });
-  };
-
-  hidePreview = () => {
-    this.setState({
-      previewStyles: {
-        display: 'none',
-      },
-    });
-  };
-
-  changePreview = event => {
-    this.setState(() => ({
-      previewSlug: event.target.pathname.slice(1, -5),
-    }));
-  };
-
   render() {
-    const { data, pageContext } = this.props;
-    const { title, content, categories, slug } = data.wordpressPost;
-    const { yearPhenomenas, meta } = pageContext;
+    const { pageContext } = this.props;
+    const { yearPhenomenas, title, content, categories, slug } = pageContext;
     const otherPhenomenas = yearPhenomenas.filter(
       phenomena => phenomena.slug !== slug
     );
-
-    const { previewStyles, previewSlug, links } = this.state;
 
     const year = +categories[0].name;
 
     const hasImage = year <= 1940 || year >= 1995;
     const innerHTML = hasImage
       ? content.replace(
-          '<!--more--></p>',
-          `</p><img class="post__img" src="/img/phenomena/${year}/${slug}.jpg">`
-        )
+        '<!--more--></p>',
+        `</p><img class="post__img" src="/img/phenomena/${year}/${slug}.jpg">`
+      )
       : content;
 
     return (
@@ -95,29 +33,9 @@ export default class extends React.Component {
             <h1 className="post__header">{title}</h1>
             <div>
               <div
-                ref={this.markdown}
                 className="post__content"
                 dangerouslySetInnerHTML={{ __html: innerHTML }}
               />
-              {links.length > 0 && previewSlug && (
-                <div
-                  class="post-preview"
-                  key={previewSlug}
-                  style={previewStyles}
-                >
-                  <h3 class="post-preview__header">
-                    {meta[previewSlug].title}{' '}
-                    <span class="post-preview__year">
-                      {meta[previewSlug].year}
-                    </span>
-                  </h3>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: meta[previewSlug].excerpt,
-                    }}
-                  />
-                </div>
-              )}
             </div>
             <div className="post__banner">
               <AboutBanner />
@@ -133,16 +51,3 @@ export default class extends React.Component {
     );
   }
 }
-
-export const pageQuery = graphql`
-  query($id: String!) {
-    wordpressPost(id: { eq: $id }) {
-      title
-      content
-      categories {
-        name
-      }
-      slug
-    }
-  }
-`;

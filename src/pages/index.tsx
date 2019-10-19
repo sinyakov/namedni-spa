@@ -4,6 +4,12 @@ import React from 'react';
 import Layout from '../components/Layout/Layout';
 import SEO from '../components/seo';
 
+// https://github.com/gatsbyjs/gatsby/issues/2289
+// separate css file
+
+import { parfenon } from '../../parfenon.js';
+const lastParfenon = parfenon[parfenon.length - 1];
+
 const IndexPage = () => (
   <Layout>
     <SEO title="Намедни. Наша Эра | Леонид Парфенов" />
@@ -50,39 +56,6 @@ const IndexPage = () => (
         </section>
       </div>
     </div>
-    <section className="home-section home-section--karaoke">
-      <h2 className="home-section__title home-section__title--karaoke">
-        Шоу «Намедни в караоке»
-      </h2>
-
-      <p>
-        Летом 2017 года выходила передача «Намедни в караоке» на телеканале
-        RTVi. Там же собирались снимать продолжение серий «Намедни» — 1946-1960,
-        но от планов отказались.
-      </p>
-
-      <p>
-        <strong>Официальное описание:</strong> Легенда российского телевидения
-        Леонид Парфенов возвращается на экраны с новым проектом «Намедни в
-        караоке». Один год — одна песня и интересный гость в студии.
-        Исторические события, личные воспоминания, и конечно любимые хиты.
-      </p>
-
-      <p>В выпусках приняли участие:</p>
-
-      <ul className="karaoke-guests">
-        <li>Юрий Стоянов</li>
-        <li>Леонид Ярмольник</li>
-        <li>Максим Виторган</li>
-        <li>Владислав Третьяк</li>
-        <li>Алексей Кортнев</li>
-        <li>Андрей Макаревич</li>
-        <li>Михаил Боярский</li>
-        <li>Дмитрий Певцов</li>
-        <li>Максим Аверин</li>
-        <li>Ефим Шифрин</li>
-      </ul>
-    </section>
     <div className="home-blocks">
       <div className="home-blocks__column">
         <section className="home-section">
@@ -161,20 +134,55 @@ const IndexPage = () => (
               что думал, что почему-то вспомнилось. Разговоры под вино недели,
               выбранное в соответствии с обстоятельствами — потому «18».
             </p>
-            <Link className="parfenon-preview" to={`/parfenon/${'sqEt9l57YNY'}.html`}>
+            <Link
+              className="parfenon-preview"
+              to={`/parfenon/${lastParfenon.youtube}`}
+            >
               <img
-                src={`https://i.ytimg.com/vi_webp/${'sqEt9l57YNY'}/maxresdefault.webp`}
+                src={`https://i.ytimg.com/vi_webp/${
+                  lastParfenon.youtube
+                }/maxresdefault.webp`}
                 alt="Последняя серия"
               />
-              <p>
-                Парфенон #31: Как в Казахстане?! Урок-1956. Боня дождался.
-                Фрейд, да не тот. «Намедни» - навсегда
-              </p>
+              <p>{lastParfenon.title}</p>
             </Link>
           </div>
         </section>
       </div>
     </div>
+    <section className="home-section home-section--karaoke">
+      <h2 className="home-section__title home-section__title--karaoke">
+        Шоу «Намедни в караоке»
+      </h2>
+
+      <p>
+        Летом 2017 года выходила передача «Намедни в караоке» на телеканале
+        RTVi. Там же собирались снимать продолжение серий «Намедни» — 1946-1960,
+        но от планов отказались.
+      </p>
+
+      <p>
+        <strong>Официальное описание:</strong> Легенда российского телевидения
+        Леонид Парфенов возвращается на экраны с новым проектом «Намедни в
+        караоке». Один год — одна песня и интересный гость в студии.
+        Исторические события, личные воспоминания, и конечно любимые хиты.
+      </p>
+
+      <p>В выпусках приняли участие:</p>
+
+      <ul className="karaoke-guests">
+        <li>Юрий Стоянов</li>
+        <li>Леонид Ярмольник</li>
+        <li>Максим Виторган</li>
+        <li>Владислав Третьяк</li>
+        <li>Алексей Кортнев</li>
+        <li>Андрей Макаревич</li>
+        <li>Михаил Боярский</li>
+        <li>Дмитрий Певцов</li>
+        <li>Максим Аверин</li>
+        <li>Ефим Шифрин</li>
+      </ul>
+    </section>
   </Layout>
 );
 
