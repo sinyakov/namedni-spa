@@ -1,8 +1,8 @@
-import { Link } from "gatsby";
-import React from "react";
-
-import { computeNearYears } from "src/utils/computeNearYears";
-import { getVolumeByYear } from "src/utils/getVolumeByYear";
+import { Link } from 'gatsby';
+import React from 'react';
+import { namedni } from '../../../../parfenon.js';
+import { computeNearYears } from 'src/utils/computeNearYears';
+import { getVolumeByYear } from 'src/utils/getVolumeByYear';
 
 interface IProps {
   year: number;
@@ -15,11 +15,13 @@ export const CurrentYearBlock: React.SFC<IProps> = ({ year }) => {
 
   return (
     <div className="sidebar__year">
-      <img
-        className="sidebar__volume-cover"
-        src={`/img/volumes/covers/${volume}.jpg`}
-        alt={`Обложка тома ${volume}.`}
-      />
+      <Link className="sidebar__volume" to={`/volumes/${volume}`} data-volume={volume}>
+        <img
+          className="sidebar__volume-cover"
+          src={`/img/volumes/covers/${volume}.jpg`}
+          alt={`Обложка тома ${volume}.`}
+        />
+      </Link>
       <div className="sidebar__year-inner">
         <div className="year-title">
           {prevYear && (
@@ -42,9 +44,11 @@ export const CurrentYearBlock: React.SFC<IProps> = ({ year }) => {
             </div>
           )}
         </div>
-        <div className="sidebar__volume-link">
-          Из тома <Link to={`/volumes/${volume}`}>{volume}</Link>
-        </div>
+        {namedni.find(n => n.year === year) && (
+          <div className="sidebar__volume-link">
+            <Link to={`/namedni/${year}`}>Смотреть видео</Link>
+          </div>
+        )}
       </div>
     </div>
   );

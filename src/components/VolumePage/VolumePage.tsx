@@ -80,7 +80,7 @@ const VolumePage: React.SFC<IProps> = ({ pageContext }) => {
 
       <h2 className="volume__phenomena-header">Другие тома «Намедни»</h2>
       <ul className="volume-list">
-        {Object.keys(volumes).map(vol => (
+        {Object.keys(volumes).filter(vol => vol !== volume).map(vol => (
           <li className="volume-item">
             <Link className="volume-item__wrapper" to={`/volumes/${vol}/`}>
               <img
