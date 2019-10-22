@@ -264,8 +264,11 @@ const namedni = [
     year: 1953,
     youtube: 'Jf93R0UDYrw'
   },
+  {
+    year: 1954,
+    youtube: 'X85T-y1t810'
+  },
 
-  
   {
     "year": 1961,
     "youtube": "G8--kbTZbNE"
