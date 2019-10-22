@@ -66,6 +66,8 @@ exports.createPages = async ({ graphql, actions }) => {
       if (meta[url]) {
         const text = htmlToText.fromString(meta[url].excerpt);
         $(link).attr("data-preview", text);
+        $(link).attr("data-title", meta[url].title);
+        $(link).attr("data-year", meta[url].year);
         $(link).attr("class", 'phenomenaLink');
       } else {
         console.log(url);

@@ -1,4 +1,5 @@
-import { graphql, StaticQuery } from 'gatsby';
+import { graphql, StaticQuery, withPrefix } from "gatsby"
+
 import React from 'react';
 import Helmet from 'react-helmet';
 
@@ -33,6 +34,7 @@ const Layout: React.SFC<IProps> = ({ children }) => (
           <div className="wrapper">{children}</div>
         </main>
         <Footer />
+        <script src={withPrefix('postPreview.js')} type="text/javascript" />
       </>
     )}
   />
