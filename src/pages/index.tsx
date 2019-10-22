@@ -16,7 +16,10 @@ const IndexPage = () => (
     <SEO title="Намедни. Наша Эра | Леонид Парфенов" />
     <div className="home-blocks">
       <div className="home-blocks__column">
-        <a href={`/namedni/${lastNamedni.year}`} className="home-section home-section--namednivideo">
+        <a
+          href={`/namedni/${lastNamedni.year}`}
+          className="home-section home-section--namednivideo"
+        >
           <h2 className="home-section__title">
             «Намедни 1946-1960»
             <br />
@@ -61,24 +64,29 @@ const IndexPage = () => (
       <div className="home-blocks__column">
         <section className="home-section">
           <div className="home-movie__inner">
-            <h2 className="home-section__title">
-              Дилогия «Русские&nbsp;грузины»
-            </h2>
+            <Link to="/russkie-evrei-2.html" className="home-section__link">
+              <h2 className="home-section__title">
+                Дилогия «Русские&nbsp;грузины»
+              </h2>
+            </Link>
             <p>
-              Закончена работа над трилогией{' '}
-              <a href="/russkie-evrei-2.html">«Русские евреи»</a>. Фильм шел в
-              кинопрокате. В интернете отсутствует. Премьера на ТВ — не раньше
-              второй половины 2018 года.
+              Премьера фильма{' '}
+              <a href="/russkie-evrei-2.html">«Русские евреи»</a> состоялась
+              весной 2018 года на&nbsp;ютуб-канале «Парфенон». Фильм описывает
+              роль евреев в истории России и разделен на три части: до
+              революции, 1918-1948 и после 1949 года.
             </p>
             <p>
-              Фильм описывает роль евреев в истории России и разделен на три
-              части: до революции, 1918-1948 и после 1949 года. В планах фильмы
-              про «русских немцев» и «русских грузин» (по две серии каждый).
+              В планах фильмы про «русских грузин» и «русских немцев» (по две
+              серии каждый). Дилогия «Русские&nbsp;грузины» выйдет в начале 2021
+              года.
             </p>
           </div>
         </section>
         <section className="home-section">
-          <h2 className="home-section__title">Последние фильмы</h2>
+          <Link to="/movies" className="home-section__link">
+            <h2 className="home-section__title">Последние фильмы</h2>
+          </Link>
           <ul className="movies-list">
             <li>
               Русские евреи <span className="movies-list__year">2018</span>
@@ -113,7 +121,9 @@ const IndexPage = () => (
           </ul>
         </section>
         <section className="home-section">
-          <h2 className="home-section__title">Цикл «Российская империя»</h2>
+          <Link to="/ri" className="home-section__link">
+            <h2 className="home-section__title">Цикл «Российская империя»</h2>
+          </Link>
           <p>
             16-серийный проект Леонида Парфенова об истории российского
             государства с 1697 по 1917 год, выпущенный к 300-летию основания
